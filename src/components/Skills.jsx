@@ -1,0 +1,80 @@
+// src/components/Skills.jsx
+import {
+  FaReact,
+  FaNodeJs,
+  FaPython,
+  FaJava,
+  FaDocker,
+  FaAws,
+  FaGitAlt,
+  FaGithub,
+  FaLinux,
+} from "react-icons/fa";
+import {
+  SiTailwindcss,
+  SiJavascript,
+  SiTypescript,
+  SiMongodb,
+  SiPostgresql,
+  SiDjango,
+  SiFlask,
+  SiRedis,
+  SiNextdotjs,
+  SiVuedotjs,
+  SiAngular,
+  SiGraphql,
+  SiFirebase,
+  SiDotnet,
+} from "react-icons/si";
+
+function Skills() {
+  const skills = [
+    { name: "React", icon: <FaReact />, color: "text-blue-400" },
+    { name: "JavaScript", icon: <SiJavascript />, color: "text-yellow-400" },
+    { name: "TypeScript", icon: <SiTypescript />, color: "text-blue-600" },
+    { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "text-cyan-400" },
+    { name: "Node.js", icon: <FaNodeJs />, color: "text-green-500" },
+    { name: ".NET", icon: <SiDotnet />, color: "text-green-500" },
+    { name: "Python", icon: <FaPython />, color: "text-blue-400" },
+    { name: "Java", icon: <FaJava />, color: "text-red-500" },
+    { name: "MongoDB", icon: <SiMongodb />, color: "text-green-600" },
+    { name: "PostgreSQL", icon: <SiPostgresql />, color: "text-blue-400" },
+    { name: "Docker", icon: <FaDocker />, color: "text-blue-500" },
+    { name: "AWS", icon: <FaAws />, color: "text-orange-400" },
+    { name: "Git", icon: <FaGitAlt />, color: "text-red-600" },
+    { name: "GitHub", icon: <FaGithub />, color: "text-white" },
+    { name: "Linux", icon: <FaLinux />, color: "text-yellow-300" },
+  ];
+
+  return (
+    <section id="skills" className="py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
+          My <span className="text-blue-400">Skills</span>
+        </h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-12 rounded-full"></div>
+
+        {/* Grid de ícones */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          {skills.map((skill, index) => (
+            <div
+              key={index}
+              className="group flex flex-col items-center gap-3 p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-blue-400 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 cursor-pointer"
+            >
+              <span
+                className={`text-4xl ${skill.color} group-hover:scale-110 transition-transform duration-300`}
+              >
+                {skill.icon}
+              </span>
+              <span className="text-white/80 text-sm font-medium group-hover:text-white transition-colors text-center">
+                {skill.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Skills;

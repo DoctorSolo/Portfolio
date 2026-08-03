@@ -1,16 +1,77 @@
-# React + Vite
+# Meu Portfólio - Miguel Eduardo
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+![Portfólio Banner](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![EmailJS](https://img.shields.io/badge/EmailJS-FF6C37?style=for-the-badge&logo=emailjs&logoColor=white)
 
-Currently, two official plugins are available:
+> Um portfólio pessoal desenvolvido com React e Tailwind CSS para apresentar meus projetos, habilidades e experiências como desenvolvedor Full Stack.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Demonstração
 
-## React Compiler
+[![Deploy com Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/seu-usuario/meu-portfolio)
+[![Deploy com Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/seu-usuario/meu-portfolio)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🔗 **[Ver Demo](https://seu-portfolio.vercel.app)**
 
-## Expanding the Oxlint configuration
+## ✨ Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- 🎨 **Design Responsivo** - Adaptado para todos os tamanhos de tela
+- 🌙 **Modo Escuro** - Tema escuro elegante e profissional
+- 📱 **Mobile First** - Otimizado para dispositivos móveis
+- 🚀 **Performance** - Carregamento rápido com Vite
+- 📧 **Formulário de Contato** - Envio de e-mails via EmailJS
+- 🎯 **Scroll Suave** - Navegação fluida entre seções
+- ⚡ **Animações** - Efeitos visuais com Tailwind CSS
+- 🎨 **Gradientes** - Design moderno com cores personalizadas
+
+## 🛠️ Tecnologias Utilizadas
+
+### Frontend
+
+- [React 18](https://react.dev/) - Biblioteca JavaScript para interfaces
+- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitário
+- [Vite](https://vitejs.dev/) - Build tool e servidor de desenvolvimento
+- [React Icons](https://react-icons.github.io/react-icons/) - Biblioteca de ícones
+
+### Integrações
+
+- [EmailJS](https://www.emailjs.com/) - Envio de e-mails sem backend
+- [Framer Motion](https://www.framer.com/motion/) (opcional) - Animações avançadas
+
+## 📦 Estrutura do Projeto
+
+```
+src/
+├── assets/
+│ └── Terra5.png # Imagem de fundo
+├── components/
+│ ├── Header.jsx # Navegação
+│ ├── Home.jsx # Página inicial
+│ ├── About.jsx # Sobre mim
+│ ├── Skills.jsx # Habilidades
+│ ├── Projects.jsx # Projetos
+│ ├── Certificates.jsx # Certificados
+│ ├── Contact.jsx # Contato/Formulário
+│ └── Footer.jsx # Rodapé
+├── App.jsx # Componente principal
+├── main.jsx # Ponto de entrada
+├── index.css # Estilos globais
+└── .env # Variáveis de ambiente
+```
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+
+- Node.js (versão 16 ou superior)
+- npm ou yarn
+
+### Instalação
+
+1. **Clone o repositório**
+
+```bash
+git clone https://github.com/seu-usuario/meu-portfolio.git
+cd meu-portfolio
+```
