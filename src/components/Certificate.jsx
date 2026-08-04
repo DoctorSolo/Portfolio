@@ -1,5 +1,6 @@
-// src/components/Certificates.jsx - Com ícones variados
+// src/components/Certificates.jsx
 import { FaCertificate, FaAward, FaGraduationCap } from "react-icons/fa";
+import { useEffect } from "react";
 
 function Certificates() {
   const certificates = [
@@ -57,7 +58,6 @@ function Certificates() {
       date: "2025",
       icon: <FaAward className="text-green-400" />,
     },
-
     {
       name: "Big Data em Apoio à Tomada de Decisão",
       issuer: "ENAP",
@@ -126,6 +126,16 @@ function Certificates() {
     },
   ];
 
+  // 🔥 Dispara evento quando o componente monta para contar certificados
+  useEffect(() => {
+    // Dispara um evento personalizado para o Home saber que os certificados foram carregados
+    window.dispatchEvent(
+      new CustomEvent("certificatesLoaded", {
+        detail: { count: certificates.length },
+      }),
+    );
+  }, []);
+
   return (
     <section id="certificates" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
@@ -141,13 +151,15 @@ function Certificates() {
               className="group flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-blue-400/30 transition-all duration-300 hover:scale-[1.02]"
             >
               <div className="text-2xl">{cert.icon}</div>
-              <div>
-                <h3 className="text-white font-medium group-hover:text-blue-400 transition-colors">
+              <div className="flex-1 min-w-0">
+                <h3 className="text-white font-medium group-hover:text-blue-400 transition-colors text-sm lg:text-base">
                   {cert.name}
                 </h3>
                 <p className="text-white/40 text-sm">{cert.issuer}</p>
               </div>
-              <div className="ml-auto text-white/30 text-sm">{cert.date}</div>
+              <div className="ml-auto text-white/30 text-sm whitespace-nowrap">
+                {cert.date}
+              </div>
             </div>
           ))}
         </div>
