@@ -8,10 +8,11 @@ function About() {
   return (
     <section id="about" className="relative py-50 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Título da seção
+        {/* Título da seção */}
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-white">
           About <span className="text-blue-400">Me</span>
-        </h2> */}
+        </h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-12 rounded-full"></div>
 
         {/* Container principal - grid com foto e texto */}
         <div className="grid md:grid-cols-2 gap-12 items-center bg-white/10 backdrop-blur-lg rounded-2xl p-8 md:p-12 border border-white/20">
