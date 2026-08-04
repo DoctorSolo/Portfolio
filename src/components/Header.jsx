@@ -24,23 +24,25 @@ function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent bg-black/20">
-      <nav className="max-w-6xl mx-auto px-0 py-2 flex justify-between items-center">
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center">
+        {/*      ↑ MUDANÇA AQUI: px-4 sm:px-6 */}
+
         {/* Logo */}
         <div
-          className="text-2xl font-bold text-white cursor-pointer hover:text-blue-400 transition-colors"
+          className="text-xl sm:text-2xl font-bold text-white cursor-pointer hover:text-blue-400 transition-colors whitespace-nowrap"
           onClick={() => handleScroll("home")}
         >
-          <span className="text-blue-400"></span>
+          <span className="text-blue-400">&lt;</span>
           Dr Solo
-          <span className="text-blue-400"></span>
+          <span className="text-blue-400">/&gt;</span>
         </div>
 
         {/* Menu Desktop */}
-        <ul className="hidden md:flex gap-8 text-white">
+        <ul className="hidden md:flex gap-6 lg:gap-8 text-white">
           <li>
             <button
               onClick={() => handleScroll("home")}
-              className="hover:text-blue-400 transition-colors text-lg"
+              className="hover:text-blue-400 transition-colors text-base lg:text-lg"
             >
               Home
             </button>
@@ -48,7 +50,7 @@ function Header() {
           <li>
             <button
               onClick={() => handleScroll("about")}
-              className="hover:text-blue-400 transition-colors text-lg"
+              className="hover:text-blue-400 transition-colors text-base lg:text-lg"
             >
               About
             </button>
@@ -56,7 +58,7 @@ function Header() {
           <li>
             <button
               onClick={() => handleScroll("skills")}
-              className="hover:text-blue-400 transition-colors text-lg"
+              className="hover:text-blue-400 transition-colors text-base lg:text-lg"
             >
               Skills
             </button>
@@ -64,7 +66,7 @@ function Header() {
           <li>
             <button
               onClick={() => handleScroll("certificates")}
-              className="hover:text-blue-400 transition-colors text-lg"
+              className="hover:text-blue-400 transition-colors text-base lg:text-lg"
             >
               Certificates
             </button>
@@ -72,7 +74,7 @@ function Header() {
           <li>
             <button
               onClick={() => handleScroll("projects")}
-              className="hover:text-blue-400 transition-colors text-lg"
+              className="hover:text-blue-400 transition-colors text-base lg:text-lg"
             >
               Projects
             </button>
@@ -80,7 +82,7 @@ function Header() {
           <li>
             <button
               onClick={() => handleScroll("contact")}
-              className="hover:text-blue-400 transition-colors text-lg"
+              className="hover:text-blue-400 transition-colors text-base lg:text-lg"
             >
               Contact
             </button>
@@ -90,7 +92,7 @@ function Header() {
         {/* Botão Mobile */}
         <button
           onClick={toggleMenu}
-          className="md:hidden text-white text-2xl hover:text-blue-400 transition-colors"
+          className="md:hidden text-white text-2xl hover:text-blue-400 transition-colors p-2"
         >
           {isOpen ? <FaTimes /> : <FaBars />}
         </button>
@@ -99,7 +101,7 @@ function Header() {
       {/* Menu Mobile */}
       {isOpen && (
         <div className="md:hidden bg-black/90 backdrop-blur-sm">
-          <ul className="flex flex-col items-center gap-6 py-8 text-white text-xl">
+          <ul className="flex flex-col items-center gap-4 py-6 text-white text-lg">
             <li>
               <button
                 onClick={() => handleScroll("home")}
