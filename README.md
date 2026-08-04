@@ -44,20 +44,20 @@
 ```
 src/
 ├── assets/
-│ └── Terra5.png # Imagem de fundo
+│   └── Terra5.png          # Imagem de fundo
 ├── components/
-│ ├── Header.jsx # Navegação
-│ ├── Home.jsx # Página inicial
-│ ├── About.jsx # Sobre mim
-│ ├── Skills.jsx # Habilidades
-│ ├── Projects.jsx # Projetos
-│ ├── Certificates.jsx # Certificados
-│ ├── Contact.jsx # Contato/Formulário
-│ └── Footer.jsx # Rodapé
-├── App.jsx # Componente principal
-├── main.jsx # Ponto de entrada
-├── index.css # Estilos globais
-└── .env # Variáveis de ambiente
+│   ├── Header.jsx          # Navegação
+│   ├── Home.jsx            # Página inicial
+│   ├── About.jsx           # Sobre mim
+│   ├── Skills.jsx          # Habilidades
+│   ├── Projects.jsx        # Projetos
+│   ├── Certificates.jsx    # Certificados
+│   ├── Contact.jsx         # Contato/Formulário
+│   └── Footer.jsx          # Rodapé
+├── App.jsx                 # Componente principal
+├── main.jsx                # Ponto de entrada
+├── index.css               # Estilos globais
+└── .env                    # Variáveis de ambiente
 ```
 
 ## 🚀 Como Executar
@@ -75,3 +75,144 @@ src/
 git clone https://github.com/seu-usuario/meu-portfolio.git
 cd meu-portfolio
 ```
+
+2. **Instale as dependências**
+
+```bash
+npm install
+# ou
+yarn install
+```
+
+3. **Configure as variáveis de ambiente**
+
+```bash
+cp .env.example .env
+```
+
+Edite o arquivo `.env` com suas credenciais do EmailJS:
+
+```env
+VITE_EMAILJS_SERVICE_ID=service_xxxxxxx
+VITE_EMAILJS_TEMPLATE_ID=template_xxxxxxx
+VITE_EMAILJS_PUBLIC_KEY=xxxxxxxxxxxx
+```
+
+4. **Inicie o servidor de desenvolvimento**
+
+```bash
+npm run dev
+# ou
+yarn dev
+```
+
+5. **Abra o navegador**
+   Acesse `http://localhost:5173`
+
+### Build para produção
+
+```bash
+npm run build
+# ou
+yarn build
+```
+
+## 📧 Configuração do EmailJS
+
+1. Crie uma conta em [EmailJS](https://www.emailjs.com/)
+2. Configure um Service (Gmail, Outlook, etc.)
+3. Crie um Template com as variáveis: `{{name}}`, `{{email}}`, `{{message}}`
+4. Copie as chaves:
+   - Service ID
+   - Template ID
+   - Public Key
+5. Adicione as chaves no arquivo `.env`
+
+## 🎨 Personalização
+
+### Cores
+
+Edite as cores no `tailwind.config.js` ou diretamente nas classes:
+
+```jsx
+// Exemplo: mudar a cor principal
+<span className="text-cyan-400"> // Azul claro
+<span className="text-emerald-400"> // Verde
+<span className="text-rose-400"> // Rosa
+```
+
+### Imagem de Fundo
+
+Substitua a imagem em `src/assets/Terra5.png` pela sua.
+
+### Seções
+
+- **Home**: Edite `components/Home.jsx`
+- **Sobre**: Edite `components/About.jsx`
+- **Habilidades**: Edite `components/Skills.jsx`
+- **Projetos**: Edite `components/Projects.jsx`
+- **Certificados**: Edite `components/Certificates.jsx`
+- **Contato**: Edite `components/Contact.jsx`
+
+## 🌐 Deploy
+
+### Vercel
+
+```bash
+npm install -g vercel
+vercel
+```
+
+### Netlify
+
+```bash
+npm install -g netlify-cli
+netlify deploy
+```
+
+### GitHub Pages
+
+```bash
+npm run build
+npm run deploy
+```
+
+## 📱 Responsividade
+
+| Dispositivo | Breakpoint     | Comportamento          |
+| ----------- | -------------- | ---------------------- |
+| Mobile      | < 640px        | Layout em coluna única |
+| Tablet      | 640px - 1024px | Grids de 2 colunas     |
+| Desktop     | > 1024px       | Grids de 3+ colunas    |
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie sua branch (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👤 Autor
+
+**Miguel Eduardo**
+
+- 🌐 [Portfólio](https://seu-portfolio.com)
+- 📧 [seu-email@gmail.com](mailto:seu-email@gmail.com)
+- 💼 [LinkedIn](https://linkedin.com/in/seu-usuario)
+- 🐙 [GitHub](https://github.com/seu-usuario)
+
+## 🙏 Agradecimentos
+
+- [React](https://react.dev/) - Framework incrível
+- [Tailwind CSS](https://tailwindcss.com/) - Estilização poderosa
+- [EmailJS](https://www.emailjs.com/) - Envio de e-mails facilitado
+- [Vite](https://vitejs.dev/) - Build tool rápida
+
+---
+
+**Feito com ❤️ por Miguel Eduardo**

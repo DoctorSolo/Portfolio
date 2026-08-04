@@ -58,7 +58,7 @@ body {
   #root {
     width: 100%; /* ← Mude de 1126px para 100% */
     max-width: 100%;
-    margin: 0; /* ← Mude de 0 auto para 0 */
+    margin: 0 auto; /* ← Mude de 0 auto para 0 */
     text-align: center;
     min-height: 100svh;
     display: flex;

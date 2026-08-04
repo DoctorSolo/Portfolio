@@ -13,7 +13,80 @@ function Certificates() {
       name: "XP Inc. - Full Stack Developer",
       issuer: "Dio",
       date: "2024",
+      icon: <FaGraduationCap className="text-blue-400" />,
+    },
+    {
+      name: "CODECON DIGITAL - 2023",
+      issuer: "Codecon",
+      date: "2023",
       icon: <FaAward className="text-green-400" />,
+    },
+    {
+      name: "DevFest Triângulo",
+      issuer: "DevFest",
+      date: "2025",
+      icon: <FaAward className="text-green-400" />,
+    },
+    {
+      name: "The 2025 NASA International Space Apps Challenge",
+      issuer: "NASA",
+      date: "2025",
+      icon: <FaAward className="text-green-400" />,
+    },
+
+    {
+      name: "Big Data em Apoio à Tomada de Decisão",
+      issuer: "ENAP",
+      date: "2023",
+      icon: <FaCertificate className="text-yellow-400" />,
+    },
+    {
+      name: "Estatística: medidas de posição e dispersão",
+      issuer: "Aprenda Mais",
+      date: "2023",
+      icon: <FaCertificate className="text-yellow-400" />,
+    },
+    {
+      name: "Banco de Dados 1: fundamentos",
+      issuer: "Aprenda Mais",
+      date: "2023",
+      icon: <FaCertificate className="text-yellow-400" />,
+    },
+    {
+      name: "Automação de Sistemas",
+      issuer: "Aprenda Mais",
+      date: "2023",
+      icon: <FaCertificate className="text-yellow-400" />,
+    },
+    {
+      name: "Criatividade - Princípios e Técnicas",
+      issuer: "FM2S",
+      date: "2023",
+      icon: <FaCertificate className="text-yellow-400" />,
+    },
+    {
+      name: "Criando Infra na Nuvem",
+      issuer: "RECODE",
+      date: "2023",
+      icon: <FaCertificate className="text-yellow-400" />,
+    },
+    {
+      name: "Fundamentos da Lei Geral de Proteção de Dados (LGPD)",
+      issuer: "ENAP",
+      date: "2023",
+      icon: <FaCertificate className="text-yellow-400" />,
+    },
+    {
+      name: "Análise de Dados em Linguagem R",
+      issuer: "ENAP",
+      date: "2023",
+      icon: <FaCertificate className="text-yellow-400" />,
+    },
+    {
+      name: "Química",
+      issuer: "ENAP",
+      date: "2023",
+      icon: <FaCertificate className="text-yellow-400" />,
     },
   ];
 

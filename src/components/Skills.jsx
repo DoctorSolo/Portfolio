@@ -25,18 +25,29 @@ import {
   SiGraphql,
   SiFirebase,
   SiDotnet,
+  SiCachyos,
+  SiBlender,
+  SiGodotengine,
 } from "react-icons/si";
+import { TbBrandCSharp } from "react-icons/tb";
+import { GrMysql } from "react-icons/gr";
+import { VscAzure, VscVscodeInsiders } from "react-icons/vsc";
 
 function Skills() {
   const skills = [
+    { name: "C#", icon: <TbBrandCSharp />, color: "text-blue-400" },
+    { name: ".NET", icon: <SiDotnet />, color: "text-green-500" },
+    { name: "MySQL", icon: <GrMysql />, color: "text-blue-400" },
+    { name: "Azure", icon: <VscAzure />, color: "text-blue-400" },
+    { name: "VS Code", icon: <VscVscodeInsiders />, color: "text-blue-400" },
+    { name: "CachyOS", icon: <SiCachyos />, color: "text-blue-400" },
+    { name: "Python", icon: <FaPython />, color: "text-blue-400" },
+    { name: "Java", icon: <FaJava />, color: "text-red-500" },
     { name: "React", icon: <FaReact />, color: "text-blue-400" },
     { name: "JavaScript", icon: <SiJavascript />, color: "text-yellow-400" },
     { name: "TypeScript", icon: <SiTypescript />, color: "text-blue-600" },
     { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "text-cyan-400" },
     { name: "Node.js", icon: <FaNodeJs />, color: "text-green-500" },
-    { name: ".NET", icon: <SiDotnet />, color: "text-green-500" },
-    { name: "Python", icon: <FaPython />, color: "text-blue-400" },
-    { name: "Java", icon: <FaJava />, color: "text-red-500" },
     { name: "MongoDB", icon: <SiMongodb />, color: "text-green-600" },
     { name: "PostgreSQL", icon: <SiPostgresql />, color: "text-blue-400" },
     { name: "Docker", icon: <FaDocker />, color: "text-blue-500" },
@@ -44,6 +55,8 @@ function Skills() {
     { name: "Git", icon: <FaGitAlt />, color: "text-red-600" },
     { name: "GitHub", icon: <FaGithub />, color: "text-white" },
     { name: "Linux", icon: <FaLinux />, color: "text-yellow-300" },
+    { name: "Blender", icon: <SiBlender />, color: "text-orange-400" },
+    { name: "Godot Engine", icon: <SiGodotengine />, color: "text-blue-600" },
   ];
 
   return (
