@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useGitHubStats } from "../hooks/useGitHubStats";
+import AnimatedCounter from "./AnimatedCounter";
 
 function Home() {
   const scrollToAbout = () => {
@@ -17,14 +18,12 @@ function Home() {
     }
   };
 
-  // Puxa os dados do GitHub
-  const { commits, repos, stars, followers, loading, error } =
-    useGitHubStats("DoctorSolo");
+  // 🔥 Dados manuais do GitHub
+  const { commits, repos, followers } = useGitHubStats("DoctorSolo");
 
-  // Estado para o número de certificados
+  // 🔥 Contagem de certificados
   const [certificatesCount, setCertificatesCount] = useState(0);
 
-  // 🔥 Escuta o evento de certificados carregados
   useEffect(() => {
     const handleCertificatesLoaded = (event) => {
       setCertificatesCount(event.detail.count);
@@ -32,7 +31,6 @@ function Home() {
 
     window.addEventListener("certificatesLoaded", handleCertificatesLoaded);
 
-    // Verifica se já existe a seção de certificados
     const checkCertificates = () => {
       const certSection = document.getElementById("certificates");
       if (certSection) {
@@ -41,7 +39,6 @@ function Home() {
       }
     };
 
-    // Tenta contar imediatamente
     setTimeout(checkCertificates, 100);
 
     return () => {
@@ -52,31 +49,35 @@ function Home() {
     };
   }, []);
 
-  // Stats dinâmicos
+  // 🔥 Stats com valores manuais
   const stats = [
     {
       icon: <FaGithub className="text-blue-400" />,
-      value: loading ? "..." : `${commits}+`,
+      value: commits,
       label: "Commits",
       description: "No GitHub",
+      suffix: "+",
     },
     {
       icon: <FaProjectDiagram className="text-purple-400" />,
-      value: loading ? "..." : repos,
+      value: repos,
       label: "Repositórios",
       description: "Públicos",
+      suffix: "",
     },
     {
       icon: <FaCertificate className="text-green-400" />,
-      value: certificatesCount || "...",
+      value: certificatesCount || 20,
       label: "Certificados",
       description: "E contando...",
+      suffix: "",
     },
     {
       icon: <FaCoffee className="text-yellow-400" />,
       value: "∞",
       label: "Cafés",
       description: "O combustível do código",
+      suffix: "",
     },
   ];
 
@@ -114,7 +115,16 @@ function Home() {
                   {stat.icon}
                 </div>
                 <div className="text-2xl sm:text-3xl font-bold text-white">
-                  {stat.value}
+                  {/* 🔥 AQUI ENTRA A ANIMAÇÃO */}
+                  {stat.value === "∞" ? (
+                    "∞"
+                  ) : (
+                    <AnimatedCounter
+                      target={stat.value}
+                      duration={2000}
+                      suffix={stat.suffix || ""}
+                    />
+                  )}
                 </div>
                 <div className="text-xs sm:text-sm text-white/60 font-medium">
                   {stat.label}
