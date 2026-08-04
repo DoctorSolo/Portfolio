@@ -16,6 +16,24 @@ function Certificates() {
       icon: <FaGraduationCap className="text-blue-400" />,
     },
     {
+      name: "Lógica de Programação",
+      issuer: "SENAI",
+      date: "2021",
+      icon: <FaGraduationCap className="text-blue-400" />,
+    },
+    {
+      name: "Finanças Pessoais",
+      issuer: "SENAI",
+      date: "2021",
+      icon: <FaGraduationCap className="text-blue-400" />,
+    },
+    {
+      name: "Emprendedorismo",
+      issuer: "SENAI",
+      date: "2021",
+      icon: <FaGraduationCap className="text-blue-400" />,
+    },
+    {
       name: "CODECON DIGITAL - 2023",
       issuer: "Codecon",
       date: "2023",

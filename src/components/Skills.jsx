@@ -9,6 +9,7 @@ import {
   FaGitAlt,
   FaGithub,
   FaLinux,
+  FaItchIo,
 } from "react-icons/fa";
 import {
   SiTailwindcss,
@@ -57,6 +58,7 @@ function Skills() {
     { name: "Linux", icon: <FaLinux />, color: "text-yellow-300" },
     { name: "Blender", icon: <SiBlender />, color: "text-orange-400" },
     { name: "Godot Engine", icon: <SiGodotengine />, color: "text-blue-600" },
+    { name: "Itch.io", icon: <FaItchIo />, color: "text-red-400" },
   ];
 
   return (

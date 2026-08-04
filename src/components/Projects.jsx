@@ -21,6 +21,15 @@ function Projects() {
       demo: "https://github.com/DoctorSolo/localization-project",
       featured: false,
     },
+    {
+      title: "Mission Critical: Securing the Cargo",
+      description:
+        "Critical Mission was my first game, it's not much but it lives in my heart.",
+      tech: ["GML", "GameMaker Studio"],
+      github: "https://dr-solo.itch.io/misso-critica-protegendo-a-carga",
+      demo: "https://dr-solo.itch.io/misso-critica-protegendo-a-carga",
+      featured: false,
+    },
   ];
 
   return (

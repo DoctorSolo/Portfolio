@@ -1,6 +1,12 @@
 // src/components/About.jsx
 import ProfilePhoto from "../assets/profile.jpeg"; // Importe sua foto
-import { FaGithub, FaLinkedin, FaTwitter, FaDiscord } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaDiscord,
+  FaItchIo,
+} from "react-icons/fa";
 
 function About() {
   return (
@@ -97,6 +103,18 @@ function About() {
                 aria-label="Discord"
               >
                 <FaDiscord
+                  size={28}
+                  className="text-white hover:text-blue-400 transition-colors"
+                />
+              </a>
+              <a
+                href="https://dr-solo.itch.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white/10 hover:bg-blue-500/30 p-3 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20"
+                aria-label="Itch.io"
+              >
+                <FaItchIo
                   size={28}
                   className="text-white hover:text-blue-400 transition-colors"
                 />
