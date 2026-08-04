@@ -1,5 +1,7 @@
 // src/components/Footer.jsx - Versão Minimalista
-import { FaGithub, FaLinkedin, FaTwitter, FaDiscord } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaDiscord, FaItchIo } from "react-icons/fa";
+import { SiBluesky } from "react-icons/si";
+import { RiTwitterXFill } from "react-icons/ri";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -42,7 +44,15 @@ function Footer() {
               rel="noopener noreferrer"
               className="text-white/40 hover:text-blue-400 transition-colors hover:scale-110"
             >
-              <FaTwitter size={20} />
+              <RiTwitterXFill size={20} />
+            </a>
+            <a
+              href="https://bsky.app/profile/doctorsolo.bsky.social"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/40 hover:text-blue-400 transition-colors hover:scale-110"
+            >
+              <SiBluesky size={20} />
             </a>
             <a
               href="https://discord.com/users/534808726570270731/"
@@ -51,6 +61,14 @@ function Footer() {
               className="text-white/40 hover:text-blue-400 transition-colors hover:scale-110"
             >
               <FaDiscord size={20} />
+            </a>
+            <a
+              href="https://dr-solo.itch.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/40 hover:text-blue-400 transition-colors hover:scale-110"
+            >
+              <FaItchIo size={20} />
             </a>
           </div>
         </div>

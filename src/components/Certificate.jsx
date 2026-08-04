@@ -34,6 +34,12 @@ function Certificates() {
       icon: <FaGraduationCap className="text-blue-400" />,
     },
     {
+      name: "Robótica Educacional",
+      issuer: "Microlins",
+      date: "2022",
+      icon: <FaGraduationCap className="text-blue-400" />,
+    },
+    {
       name: "CODECON DIGITAL - 2023",
       issuer: "Codecon",
       date: "2023",
@@ -104,6 +110,18 @@ function Certificates() {
       name: "Química",
       issuer: "ENAP",
       date: "2023",
+      icon: <FaCertificate className="text-yellow-400" />,
+    },
+    {
+      name: "Digitação",
+      issuer: "Microlins",
+      date: "2018",
+      icon: <FaCertificate className="text-yellow-400" />,
+    },
+    {
+      name: "Informática",
+      issuer: "Microlins",
+      date: "2018",
       icon: <FaCertificate className="text-yellow-400" />,
     },
   ];

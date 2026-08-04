@@ -33,6 +33,7 @@ import {
 import { TbBrandCSharp } from "react-icons/tb";
 import { GrMysql } from "react-icons/gr";
 import { VscAzure, VscVscodeInsiders } from "react-icons/vsc";
+import { PiMicrosoftExcelLogoFill } from "react-icons/pi";
 
 function Skills() {
   const skills = [
@@ -59,6 +60,11 @@ function Skills() {
     { name: "Blender", icon: <SiBlender />, color: "text-orange-400" },
     { name: "Godot Engine", icon: <SiGodotengine />, color: "text-blue-600" },
     { name: "Itch.io", icon: <FaItchIo />, color: "text-red-400" },
+    {
+      name: "Excel",
+      icon: <PiMicrosoftExcelLogoFill />,
+      color: "text-green-800",
+    },
   ];
 
   return (
