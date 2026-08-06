@@ -4,7 +4,7 @@ import { useState } from "react";
 export function useGitHubStats(username) {
   // 🔥 Dados manuais - Substitua pelos seus números reais
   const [stats] = useState({
-    commits: 496, // ← Seus commits
+    commits: 513, // ← Seus commits
     repos: 62, // ← Seus repositórios
     stars: 84, // ← Suas estrelas
     followers: 354, // ← Seus seguidores
