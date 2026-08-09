@@ -23,7 +23,7 @@ function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-transparent bg-black/20">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-transparent ">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center">
         {/*      ↑ MUDANÇA AQUI: px-4 sm:px-6 */}
 

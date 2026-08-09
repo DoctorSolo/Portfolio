@@ -12,7 +12,7 @@ function About() {
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-white">
           About <span className="text-blue-400">Me</span>
         </h2>
-        <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-8 md:mb-12 rounded-full"></div>
+        <div className="w-20 sm:w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-8 md:mb-12 rounded-full"></div>
 
         {/* Container principal - grid com foto e texto */}
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center bg-white/10 backdrop-blur-lg rounded-2xl p-6 sm:p-8 md:p-12 border border-white/20">
@@ -34,7 +34,7 @@ function About() {
             {/* Nome estilizado */}
             <div>
               <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center md:text-left">
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                   Miguel Eduardo
                 </span>
               </h3>

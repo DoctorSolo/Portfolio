@@ -38,7 +38,7 @@ function Projects() {
         <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
           <span className="text-blue-400">Featured </span> Projects
         </h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-12 rounded-full"></div>
+        <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-12 rounded-full" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (

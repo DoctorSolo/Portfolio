@@ -80,7 +80,7 @@ function Contact() {
         <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
           <span className="text-blue-400">Contact</span> Me
         </h2>
-        <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-4 rounded-full"></div>
+        <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-4 rounded-full"></div>
         {/* <p className="text-center text-white/50 mb-12 max-w-2xl mx-auto">
           Tem alguma pergunta ou quer trabalhar comigo? Fique à vontade para me
           enviar uma mensagem!
@@ -161,7 +161,7 @@ function Contact() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 rounded-lg text-white font-medium transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full py-3 bg-linear-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 rounded-lg text-white font-medium transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {isLoading ? (
                   <span className="flex items-center gap-2">

@@ -89,13 +89,13 @@ function Home() {
       <div className="text-center text-white w-full max-w-6xl mx-auto">
         {/* Main Title */}
         <h1 className="font-bold leading-none mb-2">
-          <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent text-[clamp(3rem,15vw,8rem)]">
+          <span className="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent text-[clamp(3rem,15vw,8rem)]">
             Dr. Solo
           </span>
         </h1>
 
         {/* Linha separadora */}
-        <div className="w-32 sm:w-48 md:w-64 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mb-6"></div>
+        <div className="w-32 sm:w-48 md:w-64 h-0.5 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-6"></div>
 
         {/* Subtítulo */}
         <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">
