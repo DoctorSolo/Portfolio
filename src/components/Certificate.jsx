@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 function Certificates() {
   const certificates = [
+    // Most Important
     {
       name: "Programação Python do Zero ao Avançado + Projetos Reais",
       issuer: "Udemy",
@@ -40,6 +41,7 @@ function Certificates() {
       date: "2022",
       icon: <FaGraduationCap className="text-blue-400" />,
     },
+    // Medium important
     {
       name: "CODECON DIGITAL - 2023",
       issuer: "Codecon",
@@ -58,6 +60,7 @@ function Certificates() {
       date: "2025",
       icon: <FaAward className="text-yellow-400" />,
     },
+    // Important
     {
       name: "Big Data em Apoio à Tomada de Decisão",
       issuer: "ENAP",
@@ -142,7 +145,7 @@ function Certificates() {
         <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
           Certificates & Achievements
         </h2>
-        <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-12 rounded-full"></div>
+        <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-12 rounded-full" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {certificates.map((cert, index) => (

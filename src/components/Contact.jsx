@@ -80,11 +80,11 @@ function Contact() {
         <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
           <span className="text-blue-400">Contact</span> Me
         </h2>
-        <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-4 rounded-full"></div>
-        {/* <p className="text-center text-white/50 mb-12 max-w-2xl mx-auto">
+        <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-4 rounded-full" />
+        {/* <h6 className="text-center text-white/50 mb-12 max-w-2xl mx-auto">
           Tem alguma pergunta ou quer trabalhar comigo? Fique à vontade para me
           enviar uma mensagem!
-        </p> */}
+        </h6> */}
 
         <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
           {isSent ? (

@@ -19,7 +19,7 @@ function App() {
       {/* Fundo fixo - ocupa a tela toda */}
       <div className="fixed inset-0 -z-10 bg-fixed bg-cover bg-center bg-[url('./assets/Terra5.png')]">
         {/* Overlay para escurecer */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 bg-black/40"></div>
+        <div className="absolute inset-0 bg-linear-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 bg-black/40" />
       </div>
 
       {/* Conteúdo - rola por cima */}
