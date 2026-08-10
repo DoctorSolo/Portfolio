@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
-export function useGitHubStats(USERNAME) {
+export function useGitHubStats() {
   // Estado inicial seguro e com loading
   const [stats, setStats] = useState({
     commits: 0,
     repos: 0,
   });
+  const USERNAME = import.meta.env.VITE_GITHUB_PROFILE;
 
   useEffect(() => {
     async function load() {

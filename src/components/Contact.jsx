@@ -21,9 +21,9 @@ function Contact() {
   });
 
   // ⚠️ SUBSTITUA COM SEUS DADOS ⚠️
-  const SERVICE_ID = "service_6qzdx74"; // Seu Service ID
-  const TEMPLATE_ID = "template_4c50o3j"; // Seu Template ID
-  const PUBLIC_KEY = "p59mCJJmPv1eotNpT"; // Sua Public Key
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID; // Seu Service ID
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID; // Seu Template ID
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY; // Sua Public Key
 
   const handleChange = (e) => {
     setFormData({

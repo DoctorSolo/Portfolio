@@ -90,12 +90,18 @@ yarn install
 cp .env.example .env
 ```
 
-Edite o arquivo `.env` com suas credenciais do EmailJS:
+Edite o arquivo `.env` com suas credenciais do EmailJS e perfil do GitHub:
 
 ```env
+#.env
+
+# EmailJS keys
 VITE_EMAILJS_SERVICE_ID=service_xxxxxxx
 VITE_EMAILJS_TEMPLATE_ID=template_xxxxxxx
 VITE_EMAILJS_PUBLIC_KEY=xxxxxxxxxxxx
+
+# Github profile
+VITE_GITHUB_PROFILE=xxxxxxxxxxxx
 ```
 
 4. **Inicie o servidor de desenvolvimento**

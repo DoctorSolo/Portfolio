@@ -19,7 +19,7 @@ function Home() {
   };
 
   // 🔥 Dados manuais do GitHub
-  const { commits, repos, followers } = useGitHubStats("DoctorSolo");
+  const { commits, repos, followers } = useGitHubStats();
 
   // 🔥 Contagem de certificados
   const [certificatesCount, setCertificatesCount] = useState(0);
