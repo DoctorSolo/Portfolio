@@ -5,10 +5,6 @@ export function useGitHubStats(USERNAME) {
   const [stats, setStats] = useState({
     commits: 0,
     repos: 0,
-    stars: 84,
-    followers: 356,
-    loading: true,
-    error: null,
   });
 
   useEffect(() => {
