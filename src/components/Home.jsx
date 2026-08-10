@@ -95,7 +95,7 @@ function Home() {
         </h1>
 
         {/* Linha separadora */}
-        <div className="w-32 sm:w-48 md:w-64 h-0.5 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-6"></div>
+        <div className="w-32 sm:w-48 md:w-64 h-0.5 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-6" />
 
         {/* Subtítulo */}
         <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8">

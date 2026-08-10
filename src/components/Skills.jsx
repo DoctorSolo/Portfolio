@@ -35,6 +35,7 @@ import {
   SiCplusplus,
   SiRust,
   SiMariadb,
+  SiArduino,
 } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
 import { GrMysql } from "react-icons/gr";
@@ -61,6 +62,7 @@ function Skills() {
     { name: "C", icon: <SiC />, color: "text-blue-500" },
     { name: "C++", icon: <SiCplusplus />, color: "text-blue-500" },
     { name: "Rust", icon: <SiRust />, color: "text-black" },
+    { name: "Arduino", icon: <SiArduino />, color: "text-amber" },
     { name: "JavaScript", icon: <SiJavascript />, color: "text-yellow-400" },
     { name: "TypeScript", icon: <SiTypescript />, color: "text-blue-600" },
 
