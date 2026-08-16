@@ -1,6 +1,7 @@
 // src/components/Certificates.jsx
 import { FaCertificate, FaAward, FaGraduationCap } from "react-icons/fa";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 function Certificates() {
   const certificates = [
@@ -149,21 +150,39 @@ function Certificates() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {certificates.map((cert, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
               className="group flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-blue-400/30 transition-all duration-300 hover:scale-[1.02]"
             >
-              <div className="text-2xl">{cert.icon}</div>
-              <div className="flex-1 min-w-0">
+              <span className="text-2xl">{cert.icon}</span>
+              <span className="flex-1 min-w-0">
                 <h3 className="text-white font-medium group-hover:text-blue-400 transition-colors text-sm lg:text-base">
                   {cert.name}
                 </h3>
                 <p className="text-white/40 text-sm">{cert.issuer}</p>
-              </div>
-              <div className="ml-auto text-white/30 text-sm whitespace-nowrap">
+              </span>
+              <span className="ml-auto text-white/30 text-sm whitespace-nowrap">
                 {cert.date}
-              </div>
-            </div>
+              </span>
+            </motion.div>
+            // <div
+            //   key={index}
+            //   className="group flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-blue-400/30 transition-all duration-300 hover:scale-[1.02]"
+            // >
+            //   <div className="text-2xl">{cert.icon}</div>
+            //   <div className="flex-1 min-w-0">
+            //     <h3 className="text-white font-medium group-hover:text-blue-400 transition-colors text-sm lg:text-base">
+            //       {cert.name}
+            //     </h3>
+            //     <p className="text-white/40 text-sm">{cert.issuer}</p>
+            //   </div>
+            //   <div className="ml-auto text-white/30 text-sm whitespace-nowrap">
+            //     {cert.date}
+            //   </div>
+            // </div>
           ))}
         </div>
       </div>

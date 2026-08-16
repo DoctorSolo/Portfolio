@@ -1,4 +1,5 @@
 // src/components/Skills.jsx
+import { motion } from "framer-motion";
 import {
   FaReact,
   FaNodeJs,
@@ -93,29 +94,41 @@ function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-20 px-4">
+    <section id="skills" className="py-20 px-4 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
           My <span className="text-blue-400">Skills</span>
         </h2>
         <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-12 rounded-full" />
 
-        {/* Grid de ícones */}
+        {/* Grid de ícones com animação */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {skills.map((skill, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group flex flex-col items-center gap-3 p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-blue-400 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 cursor-pointer"
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.05,
+                ease: "easeOut",
+              }}
+              whileHover={{
+                scale: 1.08,
+                transition: { duration: 0.2 },
+              }}
+              className="group flex flex-col items-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-blue-400 transition-colors duration-300 cursor-pointer"
             >
               <span
-                className={`text-4xl ${skill.color} group-hover:scale-110 transition-transform duration-300`}
+                className={`text-3xl ${skill.color} group-hover:scale-110 transition-transform duration-300`}
               >
                 {skill.icon}
               </span>
-              <span className="text-white/80 text-sm font-medium group-hover:text-white transition-colors text-center">
+              <span className="text-white/80 text-xs font-medium group-hover:text-white transition-colors text-center">
                 {skill.name}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
