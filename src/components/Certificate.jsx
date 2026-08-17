@@ -2,6 +2,7 @@
 import { FaCertificate, FaAward, FaGraduationCap } from "react-icons/fa";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { fadeInUp } from "../utils/Animations";
 
 function Certificates() {
   const certificates = [
@@ -130,7 +131,7 @@ function Certificates() {
     },
   ];
 
-  // 🔥 Dispara evento quando o componente monta para contar certificados
+  // Dispara evento quando o componente monta para contar certificados
   useEffect(() => {
     // Dispara um evento personalizado para o Home saber que os certificados foram carregados
     window.dispatchEvent(
@@ -141,7 +142,7 @@ function Certificates() {
   }, []);
 
   return (
-    <section id="certificates" className="py-20 px-4">
+    <motion.section {...fadeInUp} id="certificates" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
           Certificates & Achievements
@@ -151,11 +152,8 @@ function Certificates() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {certificates.map((cert, index) => (
             <motion.div
+              {...fadeInUp}
               key={index}
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 20 }}
-              viewport={{ once: false, amount: 0.1 }}
               className="group flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-blue-400/30 transition-all duration-300 hover:scale-[1.02]"
             >
               <span className="text-2xl">{cert.icon}</span>
@@ -169,25 +167,10 @@ function Certificates() {
                 {cert.date}
               </span>
             </motion.div>
-            // <div
-            //   key={index}
-            //   className="group flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-blue-400/30 transition-all duration-300 hover:scale-[1.02]"
-            // >
-            //   <div className="text-2xl">{cert.icon}</div>
-            //   <div className="flex-1 min-w-0">
-            //     <h3 className="text-white font-medium group-hover:text-blue-400 transition-colors text-sm lg:text-base">
-            //       {cert.name}
-            //     </h3>
-            //     <p className="text-white/40 text-sm">{cert.issuer}</p>
-            //   </div>
-            //   <div className="ml-auto text-white/30 text-sm whitespace-nowrap">
-            //     {cert.date}
-            //   </div>
-            // </div>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
