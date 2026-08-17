@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useGitHubStats } from "../hooks/useGitHubStats";
 import AnimatedCounter from "../utils/AnimatedCounter";
 import { motion } from "framer-motion";
+import { fadeInUp } from "../utils/Animations";
 
 function Home() {
   const scrollToAbout = () => {
@@ -19,10 +20,10 @@ function Home() {
     }
   };
 
-  // 🔥 Dados manuais do GitHub
-  const { commits, repos, followers } = useGitHubStats();
+  // Dados manuais do GitHub
+  const { commits, repos } = useGitHubStats();
 
-  // 🔥 Contagem de certificados
+  // Contagem de certificados
   const [certificatesCount, setCertificatesCount] = useState(0);
 
   useEffect(() => {
@@ -50,7 +51,7 @@ function Home() {
     };
   }, []);
 
-  // 🔥 Stats com valores manuais
+  // Stats com valores manuais
   const stats = [
     {
       icon: <FaGithub className="text-blue-400" />,
@@ -83,7 +84,8 @@ function Home() {
   ];
 
   return (
-    <section
+    <motion.section
+      {...fadeInUp}
       id="home"
       className="min-h-screen flex items-center justify-center px-4 py-8"
     >
@@ -109,10 +111,7 @@ function Home() {
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 20 }}
-              viewport={{ once: false, amount: 0.1 }}
+              {...fadeInUp}
               className="group bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:border-blue-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/10"
             >
               <div className="flex flex-col items-center gap-1">
@@ -153,7 +152,7 @@ function Home() {
           </span>
         </button>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
