@@ -8,6 +8,8 @@ import {
   FaExclamationCircle,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
+import { fadeInUp } from "../utils/Animations";
 
 function Contact() {
   const form = useRef();
@@ -75,7 +77,7 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 px-4">
+    <motion.section {...fadeInUp} id="contact" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
           <span className="text-blue-400">Contact</span> Me
@@ -179,7 +181,7 @@ function Contact() {
           )}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
