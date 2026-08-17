@@ -154,7 +154,8 @@ function Certificates() {
               key={index}
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              exit={{ opacity: 0, scale: 0.8, y: 20 }}
+              viewport={{ once: false, amount: 0.1 }}
               className="group flex items-center gap-4 p-4 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-blue-400/30 transition-all duration-300 hover:scale-[1.02]"
             >
               <span className="text-2xl">{cert.icon}</span>

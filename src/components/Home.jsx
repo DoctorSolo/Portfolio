@@ -8,7 +8,8 @@ import {
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useGitHubStats } from "../hooks/useGitHubStats";
-import AnimatedCounter from "./AnimatedCounter";
+import AnimatedCounter from "../utils/AnimatedCounter";
+import { motion } from "framer-motion";
 
 function Home() {
   const scrollToAbout = () => {
@@ -89,7 +90,7 @@ function Home() {
       <div className="text-center text-white w-full max-w-6xl mx-auto">
         {/* Main Title */}
         <h1 className="font-bold leading-none mb-2">
-          <span className="bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent text-[clamp(3rem,15vw,8rem)]">
+          <span className="bg-linear-to-r font-serif from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent text-[clamp(3rem,15vw,8rem)]">
             Dr. Solo
           </span>
         </h1>
@@ -106,8 +107,12 @@ function Home() {
         {/* Estatísticas */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto mb-12">
           {stats.map((stat, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 20 }}
+              viewport={{ once: false, amount: 0.1 }}
               className="group bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:border-blue-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/10"
             >
               <div className="flex flex-col items-center gap-1">
@@ -133,7 +138,7 @@ function Home() {
                   {stat.description}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

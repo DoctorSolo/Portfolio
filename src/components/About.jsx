@@ -3,13 +3,22 @@ import ProfilePhoto from "../assets/profile.jpeg"; // Importe sua foto
 import { FaGithub, FaLinkedin, FaDiscord, FaItchIo } from "react-icons/fa";
 import { SiBluesky } from "react-icons/si";
 import { RiTwitterXFill } from "react-icons/ri";
+import { motion } from "framer-motion";
+import { fadeInUp } from "../utils/Animations";
 
 function About() {
   return (
-    <section id="about" className="relative py-16 sm:py-20 md:py-32 px-4">
+    <motion.section
+      {...fadeInUp}
+      id="about"
+      className="relative py-16 sm:py-20 md:py-32 px-4"
+    >
       <div className="max-w-6xl mx-auto">
         {/* Título da seção */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-white">
+        <h2
+          {...fadeInUp}
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-white"
+        >
           About <span className="text-blue-400">Me</span>
         </h2>
         <div className="w-20 sm:w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-8 md:mb-12 rounded-full" />
@@ -20,7 +29,7 @@ function About() {
           <div className="flex justify-center">
             <div className="relative">
               {/* Moldura/animação */}
-              <div className="absolute inset-0 bg-blue-500 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+              {/* <div className="absolute inset-0 bg-blue-500 rounded-full blur-2xl opacity-20 animate-pulse"></div> */}
               <img
                 src={ProfilePhoto}
                 alt="Minha foto"
@@ -129,7 +138,7 @@ function About() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
