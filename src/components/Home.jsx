@@ -119,7 +119,7 @@ function Home() {
                   {stat.icon}
                 </div>
                 <div className="text-2xl sm:text-3xl font-bold text-white">
-                  {/* 🔥 AQUI ENTRA A ANIMAÇÃO */}
+                  {/* AQUI ENTRA A ANIMAÇÃO */}
                   {stat.value === "∞" ? (
                     "∞"
                   ) : (

@@ -1,5 +1,7 @@
 // src/components/Projects.jsx - Versão com destaque
 import { FaGithub, FaExternalLinkAlt, FaStar } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { fadeInUp } from "../utils/Animations";
 
 function Projects() {
   const projects = [
@@ -33,7 +35,7 @@ function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-20 px-4">
+    <motion.section {...fadeInUp} id="projects" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
           <span className="text-blue-400">Featured </span> Projects
@@ -42,7 +44,8 @@ function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <div
+            <motion.div
+              {...fadeInUp}
               key={index}
               className={`group p-6 bg-white/5 backdrop-blur-sm rounded-xl border transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${
                 project.featured
@@ -93,11 +96,11 @@ function Projects() {
                   <FaExternalLinkAlt size={16} />
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
