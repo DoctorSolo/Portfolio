@@ -1,5 +1,6 @@
 // src/components/Skills.jsx
 import { motion } from "framer-motion";
+import { fadeInUp } from "../utils/Animations";
 import {
   FaReact,
   FaNodeJs,
@@ -94,7 +95,11 @@ function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-20 px-4 overflow-hidden">
+    <motion.section
+      {...fadeInUp}
+      id="skills"
+      className="py-20 px-4 overflow-hidden"
+    >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
           My <span className="text-blue-400">Skills</span>
@@ -106,10 +111,7 @@ function Skills() {
           {skills.map((skill, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.8, y: 20 }}
-              viewport={{ once: false, amount: 0.1 }}
+              {...fadeInUp}
               transition={{
                 duration: 0.4,
                 delay: index * 0.05,
@@ -133,7 +135,7 @@ function Skills() {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
