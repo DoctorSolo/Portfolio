@@ -117,11 +117,7 @@ function Skills() {
                 delay: index * 0.05,
                 ease: "easeOut",
               }}
-              whileHover={{
-                scale: 1.08,
-                transition: { duration: 0.2 },
-              }}
-              className="group flex flex-col items-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-blue-400 transition-colors duration-300 cursor-pointer"
+              className="group flex flex-col items-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:border-blue-400 transition-colors duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 cursor-pointer"
             >
               <span
                 className={`text-3xl ${skill.color} group-hover:scale-110 transition-transform duration-300`}
