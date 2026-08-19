@@ -1,0 +1,34 @@
+name: Fetch GitHub Stats
+
+on:
+  # Agendado para rodar todos os dias à meia-noite (UTC)
+  schedule:
+    - cron: "0 0 * * *"
+  # Permite rodar manualmente pela aba Actions
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Buscar dados e criar arquivo JSON
+        uses: ggfevans/github-json-bourne@v1
+        with:
+          username: "DoctorSolo"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Caminho onde o arquivo JSON será salvo
+          output-path: public/github-stats.json
+
+      - name: Commitar e enviar as mudanças
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/github-stats.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: atualizar estatísticas do GitHub [skip ci]"
+          git push
