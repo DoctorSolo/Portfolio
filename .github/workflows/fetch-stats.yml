@@ -1,34 +1,62 @@
 name: Fetch GitHub Stats
 
 on:
-  # Agendado para rodar todos os dias à meia-noite (UTC)
   schedule:
+    # Roda todo dia à meia-noite
     - cron: "0 0 * * *"
-  # Permite rodar manualmente pela aba Actions
+  # Permite rodar manualmente
   workflow_dispatch:
 
 permissions:
   contents: write
+  packages: write
 
 jobs:
   update-stats:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
 
-      - name: Buscar dados e criar arquivo JSON
-        uses: ggfevans/github-json-bourne@v1
-        with:
-          username: "DoctorSolo"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          # Caminho onde o arquivo JSON será salvo
-          output-path: public/github-stats.json
+      - name: Buscar dados do GitHub
+        run: |
+          # Query GraphQL para pegar commits e repositórios
+          QUERY='{
+            "query": "query { 
+              user(login: \"DoctorSolo\") { 
+                contributionsCollection { 
+                  totalCommitContributions 
+                } 
+                repositories(first: 100, privacy: ALL) { 
+                  totalCount 
+                } 
+              } 
+            }"
+          }'
 
-      - name: Commitar e enviar as mudanças
+          # Faz a requisição para a API do GitHub
+          RESPONSE=$(curl -s -X POST \
+            -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "$QUERY" \
+            https://api.github.com/graphql)
+
+          # Extrai os dados com jq
+          COMMITS=$(echo $RESPONSE | jq '.data.user.contributionsCollection.totalCommitContributions')
+          REPOS=$(echo $RESPONSE | jq '.data.user.repositories.totalCount')
+
+          # Cria o arquivo JSON
+          echo "{
+            \"commits\": $COMMITS,
+            \"repos\": $REPOS,
+            \"updatedAt\": \"$(date -Iseconds)\"
+          }" > public/github-stats.json
+
+      - name: Commit e push das alterações
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/github-stats.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "chore: atualizar estatísticas do GitHub [skip ci]"
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: atualizar stats do GitHub [skip ci]"
           git push
