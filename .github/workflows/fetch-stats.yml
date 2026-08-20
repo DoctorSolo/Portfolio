@@ -1,15 +1,12 @@
-name: Fetch GitHub Stats
+name: Fetch GitHub Stats (com privados)
 
 on:
   schedule:
-    # Roda todo dia à meia-noite
     - cron: "0 0 * * *"
-  # Permite rodar manualmente
   workflow_dispatch:
 
 permissions:
   contents: write
-  packages: write
 
 jobs:
   update-stats:
@@ -19,41 +16,39 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4
 
-      - name: Buscar dados do GitHub
+      - name: Buscar dados do GitHub (GraphQL com privados)
         run: |
-          # Query GraphQL para pegar commits e repositórios
-          QUERY='{
-            "query": "query { 
-              user(login: \"DoctorSolo\") { 
-                contributionsCollection { 
-                  totalCommitContributions 
-                } 
-                repositories(first: 100, privacy: ALL) { 
-                  totalCount 
-                } 
-              } 
-            }"
-          }'
+          # Query GraphQL para pegar públicos E privados
+          QUERY='{"query": "query { user(login: \"DoctorSolo\") { contributionsCollection { totalCommitContributions } repositories(first: 100, privacy: ALL) { totalCount } repositoriesPublic: repositories(privacy: PUBLIC) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE) { totalCount } } }"}'
 
-          # Faz a requisição para a API do GitHub
+          # Faz a requisição com o token
           RESPONSE=$(curl -s -X POST \
-            -H "Authorization: bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Authorization: bearer ${{ secrets.PAT_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d "$QUERY" \
             https://api.github.com/graphql)
 
-          # Extrai os dados com jq
+          # Extrai os dados
           COMMITS=$(echo $RESPONSE | jq '.data.user.contributionsCollection.totalCommitContributions')
-          REPOS=$(echo $RESPONSE | jq '.data.user.repositories.totalCount')
+          REPOS_TOTAL=$(echo $RESPONSE | jq '.data.user.repositories.totalCount')
+          REPOS_PUBLIC=$(echo $RESPONSE | jq '.data.user.repositoriesPublic.totalCount')
+          REPOS_PRIVATE=$(echo $RESPONSE | jq '.data.user.repositoriesPrivate.totalCount')
 
-          # Cria o arquivo JSON
+          # Cria a pasta public
+          mkdir -p public
+
+          # Cria o JSON com todos os dados
           echo "{
             \"commits\": $COMMITS,
-            \"repos\": $REPOS,
+            \"repos\": {
+              \"total\": $REPOS_TOTAL,
+              \"public\": $REPOS_PUBLIC,
+              \"private\": $REPOS_PRIVATE
+            },
             \"updatedAt\": \"$(date -Iseconds)\"
           }" > public/github-stats.json
 
-      - name: Commit e push das alterações
+      - name: Commit e push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

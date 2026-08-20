@@ -62,7 +62,7 @@ function Home() {
     },
     {
       icon: <FaProjectDiagram className="text-purple-400" />,
-      value: repos,
+      value: repos?.total || 0,
       label: "Repositories",
       description: "Public",
       suffix: "",
