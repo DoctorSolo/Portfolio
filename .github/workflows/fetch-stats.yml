@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v4
+        uses: actions/checkout@lasted
 
       - name: Buscar dados do GitHub (GraphQL com privados)
         env:
