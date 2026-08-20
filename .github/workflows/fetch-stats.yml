@@ -14,19 +14,30 @@ jobs:
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@latest
+        uses: actions/checkout@v6
 
-      - name: Buscar dados do GitHub (GraphQL com privados)
+      - name: Buscar dados do GitHub (GraphQL)
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          QUERY='{"query": "query { user(login: \"DoctorSolo\") { contributionsCollection { totalCommitContributions } repositories(first: 100, privacy: ALL) { totalCount } repositoriesPublic: repositories(privacy: PUBLIC) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE) { totalCount } } }"}'
+          set -e
+
+          QUERY='{
+            "query": "query { user(login: \"DoctorSolo\") { contributionsCollection { totalCommitContributions } repositories(first: 100, privacy: ALL) { totalCount } repositoriesPublic: repositories(privacy: PUBLIC, first: 1) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE, first: 1) { totalCount } } }"
+          }'
 
           RESPONSE=$(curl -s -X POST \
             -H "Authorization: bearer $PAT_TOKEN" \
             -H "Content-Type: application/json" \
             -d "$QUERY" \
             https://api.github.com/graphql)
+
+          # Verifica se a API retornou erros
+          if echo "$RESPONSE" | jq -e '.errors' > /dev/null; then
+            echo "Erro na consulta GraphQL:"
+            echo "$RESPONSE" | jq '.errors'
+            exit 1
+          fi
 
           COMMITS=$(echo "$RESPONSE" | jq -r '.data.user.contributionsCollection.totalCommitContributions // 0')
           REPOS_TOTAL=$(echo "$RESPONSE" | jq -r '.data.user.repositories.totalCount // 0')
