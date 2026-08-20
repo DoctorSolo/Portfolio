@@ -1,4 +1,4 @@
-name: Fetch GitHub Stats (com privados)
+name: Fetch GitHub Stats
 
 on:
   schedule:
