@@ -22,10 +22,8 @@ jobs:
         run: |
           set -e
 
-          # Query com aliases para somar commits ano a ano (ajuste os anos se sua conta for mais antiga)
-          QUERY='{
-            "query": "query { user(login: \"DoctorSolo\") { repositories(first: 1) { totalCount } repositoriesPublic: repositories(privacy: PUBLIC, first: 1) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE, first: 1) { totalCount } c2023: contributionsCollection(from: \"2023-01-01T00:00:00Z\", to: \"2023-12-31T23:59:59Z\") { totalCommitContributions } c2024: contributionsCollection(from: \"2024-01-01T00:00:00Z\", to: \"2024-12-31T23:59:59Z\") { totalCommitContributions } c2025: contributionsCollection(from: \"2025-01-01T00:00:00Z\", to: \"2025-12-31T23:59:59Z\") { totalCommitContributions } c2026: contributionsCollection(from: \"2026-01-01T00:00:00Z\", to: \"2026-12-31T23:59:59Z\") { totalCommitContributions } } }"
-          }'
+          # Query formatada em JSON sem quebras que quebrem o Bash
+          QUERY='{"query": "query { user(login: \"DoctorSolo\") { repositories { totalCount } repositoriesPublic: repositories(privacy: PUBLIC) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE) { totalCount } c2020: contributionsCollection(from: \"2020-01-01T00:00:00Z\", to: \"2020-12-31T23:59:59Z\") { totalCommitContributions } c2021: contributionsCollection(from: \"2021-01-01T00:00:00Z\", to: \"2021-12-31T23:59:59Z\") { totalCommitContributions } c2022: contributionsCollection(from: \"2022-01-01T00:00:00Z\", to: \"2022-12-31T23:59:59Z\") { totalCommitContributions } c2023: contributionsCollection(from: \"2023-01-01T00:00:00Z\", to: \"2023-12-31T23:59:59Z\") { totalCommitContributions } c2024: contributionsCollection(from: \"2024-01-01T00:00:00Z\", to: \"2024-12-31T23:59:59Z\") { totalCommitContributions } c2025: contributionsCollection(from: \"2025-01-01T00:00:00Z\", to: \"2025-12-31T23:59:59Z\") { totalCommitContributions } c2026: contributionsCollection(from: \"2026-01-01T00:00:00Z\", to: \"2026-12-31T23:59:59Z\") { totalCommitContributions } } }"}'
 
           RESPONSE=$(curl -s -X POST \
             -H "Authorization: bearer $PAT_TOKEN" \
@@ -33,15 +31,13 @@ jobs:
             -d "$QUERY" \
             https://api.github.com/graphql)
 
-          echo "Resposta crua da API: $RESPONSE"
-
           if echo "$RESPONSE" | jq -e '.errors' > /dev/null; then
             echo "❌ Erro na consulta GraphQL:"
             echo "$RESPONSE" | jq '.errors'
             exit 1
           fi
 
-          # Extrai os commits de cada ano (0 se for nulo)
+          # Extrai os commits de cada ano (garante 0 caso seja nulo)
           C2020=$(echo "$RESPONSE" | jq -r '.data.user.c2020.totalCommitContributions // 0')
           C2021=$(echo "$RESPONSE" | jq -r '.data.user.c2021.totalCommitContributions // 0')
           C2022=$(echo "$RESPONSE" | jq -r '.data.user.c2022.totalCommitContributions // 0')
@@ -64,7 +60,7 @@ jobs:
             --arg total "$REPOS_TOTAL" \
             --arg public "$REPOS_PUBLIC" \
             --arg private "$REPOS_PRIVATE" \
-            --arg date "$(date -Iseconds)" \
+            --arg date "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
             '{
               commits: ($commits | tonumber),
               repos: {
