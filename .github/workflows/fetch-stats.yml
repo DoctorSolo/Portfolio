@@ -17,36 +17,39 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Buscar dados do GitHub (GraphQL com privados)
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          # Query GraphQL para pegar públicos E privados
           QUERY='{"query": "query { user(login: \"DoctorSolo\") { contributionsCollection { totalCommitContributions } repositories(first: 100, privacy: ALL) { totalCount } repositoriesPublic: repositories(privacy: PUBLIC) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE) { totalCount } } }"}'
 
-          # Faz a requisição com o token
           RESPONSE=$(curl -s -X POST \
-            -H "Authorization: bearer ${{ secrets.PAT_TOKEN }}" \
+            -H "Authorization: bearer $PAT_TOKEN" \
             -H "Content-Type: application/json" \
             -d "$QUERY" \
             https://api.github.com/graphql)
 
-          # Extrai os dados
-          COMMITS=$(echo $RESPONSE | jq '.data.user.contributionsCollection.totalCommitContributions')
-          REPOS_TOTAL=$(echo $RESPONSE | jq '.data.user.repositories.totalCount')
-          REPOS_PUBLIC=$(echo $RESPONSE | jq '.data.user.repositoriesPublic.totalCount')
-          REPOS_PRIVATE=$(echo $RESPONSE | jq '.data.user.repositoriesPrivate.totalCount')
+          COMMITS=$(echo "$RESPONSE" | jq -r '.data.user.contributionsCollection.totalCommitContributions // 0')
+          REPOS_TOTAL=$(echo "$RESPONSE" | jq -r '.data.user.repositories.totalCount // 0')
+          REPOS_PUBLIC=$(echo "$RESPONSE" | jq -r '.data.user.repositoriesPublic.totalCount // 0')
+          REPOS_PRIVATE=$(echo "$RESPONSE" | jq -r '.data.user.repositoriesPrivate.totalCount // 0')
 
-          # Cria a pasta public
           mkdir -p public
 
-          # Cria o JSON com todos os dados
-          echo "{
-            \"commits\": $COMMITS,
-            \"repos\": {
-              \"total\": $REPOS_TOTAL,
-              \"public\": $REPOS_PUBLIC,
-              \"private\": $REPOS_PRIVATE
-            },
-            \"updatedAt\": \"$(date -Iseconds)\"
-          }" > public/github-stats.json
+          jq -n \
+            --arg commits "$COMMITS" \
+            --arg total "$REPOS_TOTAL" \
+            --arg public "$REPOS_PUBLIC" \
+            --arg private "$REPOS_PRIVATE" \
+            --arg date "$(date -Iseconds)" \
+            '{
+              commits: ($commits | tonumber),
+              repos: {
+                total: ($total | tonumber),
+                public: ($public | tonumber),
+                private: ($private | tonumber)
+              },
+              updatedAt: $date
+            }' > public/github-stats.json
 
       - name: Commit e push
         run: |
