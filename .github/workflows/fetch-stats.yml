@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Buscar dados do GitHub (GraphQL Histórico)
         env:
@@ -22,9 +22,8 @@ jobs:
         run: |
           set -e
 
-          # Query formatada em JSON sem quebras que quebrem o Bash
           QUERY=$(cat << 'EOF'
-          {"query": "query { user(login: \"DoctorSolo\") { repositories { totalCount } repositoriesPublic: repositories(privacy: PUBLIC) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE) { totalCount } c2023: contributionsCollection(from: \"2023-01-01T00:00:00Z\", to: \"2023-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } c2024: contributionsCollection(from: \"2024-01-01T00:00:00Z\", to: \"2024-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } c2025: totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount(from: \"2025-01-01T00:00:00Z\", to: \"2025-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } c2026: contributionsCollection(from: \"2026-01-01T00:00:00Z\", to: \"2026-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } } }"}
+          {"query": "query { user(login: \"DoctorSolo\") { repositories { totalCount } repositoriesPublic: repositories(privacy: PUBLIC) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE) { totalCount } c2023: contributionsCollection(from: \"2023-01-01T00:00:00Z\", to: \"2023-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } c2024: contributionsCollection(from: \"2024-01-01T00:00:00Z\", to: \"2024-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } c2025: contributionsCollection(from: \"2025-01-01T00:00:00Z\", to: \"2025-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } c2026: contributionsCollection(from: \"2026-01-01T00:00:00Z\", to: \"2026-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } } }"}
           EOF
           )
 
@@ -40,18 +39,14 @@ jobs:
             exit 1
           fi
 
-          # Extrai os commits de cada ano (garante 0 caso seja nulo)
-          C2023=$(echo "$RESPONSE" | jq -r '.data.user.c2023 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0
-          ')
-          C2024=$(echo "$RESPONSE" | jq -r '.data.user.c2024 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0
-          ')
-          C2025=$(echo "$RESPONSE" | jq -r '.data.user.c2025 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0
-          ')
-          C2026=$(echo "$RESPONSE" | jq -r '.data.user.c2026 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0
-          ')
+          # Extrai as contribuições de cada ano
+          C2023=$(echo "$RESPONSE" | jq -r '.data.user.c2023 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0')
+          C2024=$(echo "$RESPONSE" | jq -r '.data.user.c2024 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0')
+          C2025=$(echo "$RESPONSE" | jq -r '.data.user.c2025 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0')
+          C2026=$(echo "$RESPONSE" | jq -r '.data.user.c2026 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0')
 
-          # Soma total histórica
-          COMMITS=$(C2023 + C2024 + C2025 + C2026))
+          # Soma total matemática corrigida
+          COMMITS=$((C2023 + C2024 + C2025 + C2026))
 
           REPOS_TOTAL=$(echo "$RESPONSE" | jq -r '.data.user.repositories.totalCount // 0')
           REPOS_PUBLIC=$(echo "$RESPONSE" | jq -r '.data.user.repositoriesPublic.totalCount // 0')
