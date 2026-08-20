@@ -16,15 +16,15 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v6
 
-      - name: Buscar dados do GitHub (GraphQL)
+      - name: Buscar dados do GitHub (GraphQL Histórico)
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           set -e
 
-          # Consulta corrigida: removido "privacy: ALL" e otimizado para first: 1
+          # Query com aliases para somar commits ano a ano (ajuste os anos se sua conta for mais antiga)
           QUERY='{
-            "query": "query { user(login: \"DoctorSolo\") { contributionsCollection { totalCommitContributions } repositories(first: 1) { totalCount } repositoriesPublic: repositories(privacy: PUBLIC, first: 1) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE, first: 1) { totalCount } } }"
+            "query": "query { user(login: \"DoctorSolo\") { repositories(first: 1) { totalCount } repositoriesPublic: repositories(privacy: PUBLIC, first: 1) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE, first: 1) { totalCount } c2023: contributionsCollection(from: \"2023-01-01T00:00:00Z\", to: \"2023-12-31T23:59:59Z\") { totalCommitContributions } c2024: contributionsCollection(from: \"2024-01-01T00:00:00Z\", to: \"2024-12-31T23:59:59Z\") { totalCommitContributions } c2025: contributionsCollection(from: \"2025-01-01T00:00:00Z\", to: \"2025-12-31T23:59:59Z\") { totalCommitContributions } c2026: contributionsCollection(from: \"2026-01-01T00:00:00Z\", to: \"2026-12-31T23:59:59Z\") { totalCommitContributions } } }"
           }'
 
           RESPONSE=$(curl -s -X POST \
@@ -33,7 +33,6 @@ jobs:
             -d "$QUERY" \
             https://api.github.com/graphql)
 
-          # Imprime a resposta para debug caso falhe novamente
           echo "Resposta crua da API: $RESPONSE"
 
           if echo "$RESPONSE" | jq -e '.errors' > /dev/null; then
@@ -42,7 +41,18 @@ jobs:
             exit 1
           fi
 
-          COMMITS=$(echo "$RESPONSE" | jq -r '.data.user.contributionsCollection.totalCommitContributions // 0')
+          # Extrai os commits de cada ano (0 se for nulo)
+          C2020=$(echo "$RESPONSE" | jq -r '.data.user.c2020.totalCommitContributions // 0')
+          C2021=$(echo "$RESPONSE" | jq -r '.data.user.c2021.totalCommitContributions // 0')
+          C2022=$(echo "$RESPONSE" | jq -r '.data.user.c2022.totalCommitContributions // 0')
+          C2023=$(echo "$RESPONSE" | jq -r '.data.user.c2023.totalCommitContributions // 0')
+          C2024=$(echo "$RESPONSE" | jq -r '.data.user.c2024.totalCommitContributions // 0')
+          C2025=$(echo "$RESPONSE" | jq -r '.data.user.c2025.totalCommitContributions // 0')
+          C2026=$(echo "$RESPONSE" | jq -r '.data.user.c2026.totalCommitContributions // 0')
+
+          # Soma total histórica
+          COMMITS=$((C2020 + C2021 + C2022 + C2023 + C2024 + C2025 + C2026))
+
           REPOS_TOTAL=$(echo "$RESPONSE" | jq -r '.data.user.repositories.totalCount // 0')
           REPOS_PUBLIC=$(echo "$RESPONSE" | jq -r '.data.user.repositoriesPublic.totalCount // 0')
           REPOS_PRIVATE=$(echo "$RESPONSE" | jq -r '.data.user.repositoriesPrivate.totalCount // 0')
