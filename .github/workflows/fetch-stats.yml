@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Buscar dados do GitHub (GraphQL)
         env:
@@ -22,8 +22,9 @@ jobs:
         run: |
           set -e
 
+          # Consulta corrigida: removido "privacy: ALL" e otimizado para first: 1
           QUERY='{
-            "query": "query { user(login: \"DoctorSolo\") { contributionsCollection { totalCommitContributions } repositories(first: 100, privacy: ALL) { totalCount } repositoriesPublic: repositories(privacy: PUBLIC, first: 1) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE, first: 1) { totalCount } } }"
+            "query": "query { user(login: \"DoctorSolo\") { contributionsCollection { totalCommitContributions } repositories(first: 1) { totalCount } repositoriesPublic: repositories(privacy: PUBLIC, first: 1) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE, first: 1) { totalCount } } }"
           }'
 
           RESPONSE=$(curl -s -X POST \
@@ -32,9 +33,11 @@ jobs:
             -d "$QUERY" \
             https://api.github.com/graphql)
 
-          # Verifica se a API retornou erros
+          # Imprime a resposta para debug caso falhe novamente
+          echo "Resposta crua da API: $RESPONSE"
+
           if echo "$RESPONSE" | jq -e '.errors' > /dev/null; then
-            echo "Erro na consulta GraphQL:"
+            echo "❌ Erro na consulta GraphQL:"
             echo "$RESPONSE" | jq '.errors'
             exit 1
           fi
