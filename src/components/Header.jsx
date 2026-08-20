@@ -100,7 +100,7 @@ function Header() {
 
       {/* Menu Mobile */}
       {isOpen && (
-        <div className="md:hidden bg-black/90 backdrop-blur-sm">
+        <div className="md:hidden bg-transparent backdrop-blur-sm">
           <ul className="flex flex-col items-center gap-4 py-6 text-white text-lg">
             <li>
               <button

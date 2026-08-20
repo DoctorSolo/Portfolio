@@ -142,12 +142,18 @@ function Certificates() {
   }, []);
 
   return (
-    <motion.section {...fadeInUp} id="certificates" className="py-20 px-4">
+    <section id="certificates" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
+        <motion.h2
+          {...fadeInUp}
+          className="text-4xl md:text-5xl font-bold text-center text-white mb-4"
+        >
           Certificates & Achievements
-        </h2>
-        <div className="w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-12 rounded-full" />
+        </motion.h2>
+        <motion.div
+          {...fadeInUp}
+          className="w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-12 rounded-full"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {certificates.map((cert, index) => (
@@ -170,7 +176,7 @@ function Certificates() {
           ))}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
 

@@ -22,7 +22,7 @@ function Contact() {
     message: "",
   });
 
-  // ⚠️ SUBSTITUA COM SEUS DADOS ⚠️
+  // This is your EmailJS Tokens
   const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID; // Seu Service ID
   const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID; // Seu Template ID
   const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY; // Sua Public Key

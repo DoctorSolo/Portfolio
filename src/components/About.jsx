@@ -15,10 +15,7 @@ function About() {
     >
       <div className="max-w-6xl mx-auto">
         {/* Título da seção */}
-        <h2
-          {...fadeInUp}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-white"
-        >
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-white">
           About <span className="text-blue-400">Me</span>
         </h2>
         <div className="w-20 sm:w-24 h-1 bg-linear-to-r from-blue-400 to-purple-400 mx-auto mb-8 md:mb-12 rounded-full" />
@@ -29,7 +26,7 @@ function About() {
           <div className="flex justify-center">
             <div className="relative">
               {/* Moldura/animação */}
-              {/* <div className="absolute inset-0 bg-blue-500 rounded-full blur-2xl opacity-20 animate-pulse"></div> */}
+              {/* <div className="absolute inset-0 bg-blue-500 rounded-full blur-2xl opacity-20 animate-pulse" /> */}
               <img
                 src={ProfilePhoto}
                 alt="Minha foto"
@@ -53,12 +50,22 @@ function About() {
             </div>
 
             {/* Descrição */}
-            <p className="text-gray-300 leading-relaxed text-sm sm:text-base md:text-lg text-center md:text-left">
-              Hello traveler, what an honor to have you here! You might be
-              wondering who I am. Well, I'm just a programmer passionate about
-              solving problems. I travel across the vast world of the internet
-              to learn new things and grow. And you?
-            </p>
+            <div className="text-gray-300 leading-relaxed text-sm sm:text-base md:text-lg text-center md:text-left space-y-4">
+              <p>
+                Hello traveler, what an honor to have you here! You might be
+                wondering who I am. Well, I'm just a programmer passionate about
+                solving problems, navigating through code to learn and build
+                meaningful solutions.
+              </p>
+              <br />
+              <p>
+                My technical toolkit includes <strong>ASP.NET Core</strong>,{" "}
+                <strong>Python</strong>,<strong>TypeScript</strong>,{" "}
+                <strong>React</strong>, and <strong>Tailwind CSS</strong>. I
+                thrive in dynamic environments, constantly seeking to write
+                clean, maintainable code.
+              </p>
+            </div>
 
             {/* Links Sociais - CORRIGIDO */}
             <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3 md:gap-4 pt-2 sm:pt-4">
