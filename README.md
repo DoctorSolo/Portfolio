@@ -9,10 +9,10 @@
 
 ## 🚀 Demonstração
 
-[![Deploy com Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/seu-usuario/meu-portfolio)
-[![Deploy com Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/seu-usuario/meu-portfolio)
+[![Deploy com Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/DoctorSolo/Portfolio)
+[![Deploy com Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/DoctorSolo/Portfolio)
 
-🔗 **[Ver Demo](https://seu-portfolio.vercel.app)**
+🔗 **[Ver Demo](https://miguel-eduardo.vercel.app/)**
 
 ## ✨ Funcionalidades
 
@@ -29,7 +29,7 @@
 
 ### Frontend
 
-- [React 18](https://react.dev/) - Biblioteca JavaScript para interfaces
+- [React 19](https://react.dev/) - Biblioteca JavaScript para interfaces
 - [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitário
 - [Vite](https://vitejs.dev/) - Build tool e servidor de desenvolvimento
 - [React Icons](https://react-icons.github.io/react-icons/) - Biblioteca de ícones
@@ -72,7 +72,7 @@ src/
 1. **Clone o repositório**
 
 ```bash
-git clone https://github.com/seu-usuario/meu-portfolio.git
+git clone https://github.com/DoctorSolo/Portfolio.git
 cd meu-portfolio
 ```
 
@@ -207,10 +207,10 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 **Miguel Eduardo**
 
-- 🌐 [Portfólio](https://seu-portfolio.com)
-- 📧 [seu-email@gmail.com](mailto:seu-email@gmail.com)
-- 💼 [LinkedIn](https://linkedin.com/in/seu-usuario)
-- 🐙 [GitHub](https://github.com/seu-usuario)
+- 🌐 [Portfólio](https://github.com/DoctorSolo/Portfolio)
+- 📧 [miguel.eduardo.commercial@gmail.com](mailto:miguel.eduardo.commercial@gmail.com)
+- 💼 [LinkedIn](https://www.linkedin.com/in/migueledu303/)
+- 🐙 [GitHub](https://github.com/DoctorSolo)
 
 ## 🙏 Agradecimentos
 
@@ -219,6 +219,10 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 - [EmailJS](https://www.emailjs.com/) - Envio de e-mails facilitado
 - [Vite](https://vitejs.dev/) - Build tool rápida
 
+## 📜 Creditos
+
+- <img height=30 align=center src="public/racoon.svg" /> Icon created by [juicy_fish](https://www.flaticon.com/br/autores/juicy-fish) available at [Flaticon](https://www.flaticon.com/br/icone-gratis/racoon_1797272?term=racoon&page=1&position=3&origin=search&related_id=1797272)
+
 ---
 
-**Feito com ❤️ por Miguel Eduardo**
+**Feito com muito ☕ por Miguel Eduardo**

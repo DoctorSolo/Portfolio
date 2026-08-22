@@ -6,12 +6,37 @@ import { fadeInUp } from "../utils/Animations";
 function Projects() {
   const projects = [
     {
+      title: "Portfolio",
+      description:
+        "Welcome to my portfolio repository! I've been planning to make this for a long time, and I've finally created my first portfolio. Built with React, TailwindCSS, and JavaScript.",
+      tech: ["React", "Node.js", "Vite", "Tailwind CSS", "GraphQL"],
+      github: "https://github.com/DoctorSolo/Portfolio",
+      demo: "https://miguel-eduardo.vercel.app/",
+      featured: true,
+    },
+    {
       title: "Ezdin",
       description:
         "Frontend for the ezDin application, a gamified personal finance web app. Developed in JavaScript using the React framework and an integrated API, the program features an interactive and intuitive layout designed to make learning dynamic.",
-      tech: ["React", "Node.js", "PostgreSQL", "Tailwind", "Python"],
+      tech: ["React", "Node.js", "PostgreSQL", "Tailwind CSS", "Python"],
       github: "https://github.com/DoctorSolo/ezdin-frontend",
       demo: "https://ezdin-frontend.vercel.app/login",
+      featured: true,
+    },
+    {
+      title: "Geocode Aplication with Google Cloud",
+      description:
+        "This project show some descriptions about a geographic coordinates. It's one of my first ones python projects. The base is in tkinter and I used Google Cloud API to map and Gemini.",
+      tech: [
+        "Python",
+        "CustomTkinter",
+        "Google Cloud",
+        "Google Maps API",
+        "Gemini API",
+        "Ollama",
+      ],
+      github: "https://github.com/DoctorSolo/Geocode-Aplication-Google-Cloud",
+      demo: "https://github.com/DoctorSolo/Geocode-Aplication-Google-Cloud",
       featured: true,
     },
     {

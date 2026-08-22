@@ -112,6 +112,11 @@ function Home() {
             <motion.div
               key={index}
               {...fadeInUp}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.5,
+                ease: "easeOut",
+              }}
               className="group bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:border-blue-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/10"
             >
               <div className="flex flex-col items-center gap-1">
