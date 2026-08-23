@@ -39,14 +39,6 @@ function Footer() {
               <FaLinkedin size={20} />
             </a>
             <a
-              href="https://x.com/DrSolo303"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white/40 hover:text-blue-400 transition-colors hover:scale-110"
-            >
-              <RiTwitterXFill size={20} />
-            </a>
-            <a
               href="https://bsky.app/profile/doctorsolo.bsky.social"
               target="_blank"
               rel="noopener noreferrer"

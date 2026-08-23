@@ -94,18 +94,6 @@ function About() {
                 />
               </a>
               <a
-                href="https://x.com/DrSolo303"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white/10 hover:bg-blue-500/30 p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20"
-                aria-label="Twitter"
-              >
-                <RiTwitterXFill
-                  size={20}
-                  className="sm:text-2xl text-white hover:text-blue-400 transition-colors"
-                />
-              </a>
-              <a
                 href="https://bsky.app/profile/doctorsolo.bsky.social"
                 target="_blank"
                 rel="noopener noreferrer"
