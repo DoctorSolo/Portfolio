@@ -16,52 +16,70 @@ jobs:
       - name: Code Checkout
         uses: actions/checkout@v7
 
-      - name: Search Github data (GraphQL History)
+      - name: Fetch and Process GitHub Stats
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+          TARGET_USER: "DoctorSolo"
         run: |
           set -e
 
-          QUERY=$(cat << 'EOF'
-          {"query": "query { user(login: \"DoctorSolo\") { repositories { totalCount } repositoriesPublic: repositories(privacy: PUBLIC) { totalCount } repositoriesPrivate: repositories(privacy: PRIVATE) { totalCount } c2023: contributionsCollection(from: \"2023-01-01T00:00:00Z\", to: \"2023-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } c2024: contributionsCollection(from: \"2024-01-01T00:00:00Z\", to: \"2024-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } c2025: contributionsCollection(from: \"2025-01-01T00:00:00Z\", to: \"2025-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } c2026: contributionsCollection(from: \"2026-01-01T00:00:00Z\", to: \"2026-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount } } }"}
+          # 1. Obter lista de todos os anos de contribuição e totais de repositórios
+          META_QUERY=$(cat <<EOF
+          {"query": "query { user(login: \"$TARGET_USER\") { repositories(ownerAffiliations: [OWNER]) { totalCount } repositoriesPublic: repositories(ownerAffiliations: [OWNER], privacy: PUBLIC) { totalCount } repositoriesPrivate: repositories(ownerAffiliations: [OWNER], privacy: PRIVATE) { totalCount } contributionsCollection { contributionYears } } }"}
           EOF
           )
 
-          RESPONSE=$(curl -s -X POST \
+          META_RESPONSE=$(curl -s -X POST \
             -H "Authorization: bearer $PAT_TOKEN" \
             -H "Content-Type: application/json" \
-            -d "$QUERY" \
+            -d "$META_QUERY" \
             https://api.github.com/graphql)
 
-          if echo "$RESPONSE" | jq -e '.errors' > /dev/null; then
-            echo "❌ Erro na consulta GraphQL:"
-            echo "$RESPONSE" | jq '.errors'
+          if echo "$META_RESPONSE" | jq -e '.errors' > /dev/null; then
+            echo "❌ Erro na consulta de metadados:"
+            echo "$META_RESPONSE" | jq '.errors'
             exit 1
           fi
 
-          # Extrai as contribuições de cada ano
-          C2023=$(echo "$RESPONSE" | jq -r '.data.user.c2023 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0')
-          C2024=$(echo "$RESPONSE" | jq -r '.data.user.c2024 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0')
-          C2025=$(echo "$RESPONSE" | jq -r '.data.user.c2025 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0')
-          C2026=$(echo "$RESPONSE" | jq -r '.data.user.c2026 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0')
+          YEARS=$(echo "$META_RESPONSE" | jq -r '.data.user.contributionsCollection.contributionYears[]')
+          REPOS_TOTAL=$(echo "$META_RESPONSE" | jq -r '.data.user.repositories.totalCount // 0')
+          REPOS_PUBLIC=$(echo "$META_RESPONSE" | jq -r '.data.user.repositoriesPublic.totalCount // 0')
+          REPOS_PRIVATE=$(echo "$META_RESPONSE" | jq -r '.data.user.repositoriesPrivate.totalCount // 0')
 
-          # Soma total matemática
-          COMMITS=$((C2023 + C2024 + C2025 + C2026))
+          # 2. Montar query dinâmica para todos os anos
+          FIELDS=""
+          for Y in $YEARS; do
+            FIELDS="$FIELDS y$Y: contributionsCollection(from: \"${Y}-01-01T00:00:00Z\", to: \"${Y}-12-31T23:59:59Z\") { totalCommitContributions totalIssueContributions totalPullRequestContributions totalPullRequestReviewContributions restrictedContributionsCount }"
+          done
 
-          REPOS_TOTAL=$(echo "$RESPONSE" | jq -r '.data.user.repositories.totalCount // 0')
-          REPOS_PUBLIC=$(echo "$RESPONSE" | jq -r '.data.user.repositoriesPublic.totalCount // 0')
-          REPOS_PRIVATE=$(echo "$RESPONSE" | jq -r '.data.user.repositoriesPrivate.totalCount // 0')
+          STATS_QUERY=$(jq -n --arg q "query { user(login: \"$TARGET_USER\") { $FIELDS } }" '{"query": $q}')
+
+          STATS_RESPONSE=$(curl -s -X POST \
+            -H "Authorization: bearer $PAT_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$STATS_QUERY" \
+            https://api.github.com/graphql)
+
+          if echo "$STATS_RESPONSE" | jq -e '.errors' > /dev/null; then
+            echo "❌ Erro na consulta de contribuições:"
+            echo "$STATS_RESPONSE" | jq '.errors'
+            exit 1
+          fi
+
+          # 3. Somar todas as contribuições de todos os anos
+          TOTAL_CONTRIBUTIONS=$(echo "$STATS_RESPONSE" | jq '[.data.user[] | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount)] | add // 0')
 
           mkdir -p public
 
+          # 4. Gerar o arquivo JSON
           jq -n \
-            --arg commits "$COMMITS" \
+            --arg totalContribs "$TOTAL_CONTRIBUTIONS" \
             --arg total "$REPOS_TOTAL" \
             --arg public "$REPOS_PUBLIC" \
             --arg private "$REPOS_PRIVATE" \
             --arg date "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
             '{
-              commits: ($commits | tonumber),
+              contributions: ($totalContribs | tonumber),
               repos: {
                 total: ($total | tonumber),
                 public: ($public | tonumber),
@@ -72,15 +90,15 @@ jobs:
 
       - name: Generate App Token
         id: generate_token
-        uses: actions/create-github-app-token@v3
+        uses: actions/create-github-app-token@v1
         with:
-          client-id: ${{ secrets.APP_ID }}
+          client-id: ${{ secrets.CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Commit and Push
         run: |
           git config user.name "NexusHub-Bot[bot]"
-          git config user.email "${{ steps.generate_token.outputs.client-id }}+NexusHub-Bot[bot]@users.noreply.github.com"
+          git config user.email "${{ secrets.CLIENT_ID }}+NexusHub-Bot[bot]@users.noreply.github.com"
           
           git remote set-url origin https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git
           
