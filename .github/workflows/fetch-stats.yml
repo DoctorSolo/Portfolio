@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
+      - name: Code Checkout
         uses: actions/checkout@v7
 
-      - name: Buscar dados do GitHub (GraphQL Histórico)
+      - name: Search Github data (GraphQL History)
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
@@ -70,10 +70,20 @@ jobs:
               updatedAt: $date
             }' > public/github-stats.json
 
-      - name: Commit e push
+      - name: Generate App Token
+        id: generate_token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - name: Commit and Push
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "NexusHub-Bot[bot]"
+          git config user.email "${{ steps.generate_token.outputs.app-id }}+NexusHub-Bot[bot]@users.noreply.github.com"
+          echo "Update" > github-stats.json
           git add public/github-stats.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "chore: atualizar stats do GitHub [skip ci]"
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: update GitHub stats [skip ci]"
           git push
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
