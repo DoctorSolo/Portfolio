@@ -95,22 +95,13 @@ jobs:
           client-id: ${{ secrets.CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
-      # - name: Commit and Push
-      #   run: |
-      #     git config user.name "NexusHub-Bot[bot]"
-      #     git config user.email "320790022+NexusHub-Bot[bot]@users.noreply.github.com"
+      - name: Commit and Push
+        run: |
+          git config user.name "NexusHub-Bot[bot]"
+          git config user.email "320790022+NexusHub-Bot[bot]@users.noreply.github.com"
           
-      #     git remote set-url origin https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git
           
-      #     git add public/github-stats.json
-      #     git diff --quiet && git diff --staged --quiet || git commit -m "chore: update GitHub stats [skip ci]"
-      #     git push
-
-      - name: Commit changes via GitHub App
-        uses: stefanzweifel/git-auto-commit-action@v7
-        with:
-          commit_message: "chore: update GitHub stats [skip ci]"
-          file_pattern: "public/github-stats.json"
-          commit_user_name: "NexusHub-Bot[bot]"
-          commit_user_email: "320790022+NexusHub-Bot[bot]@users.noreply.github.com"
-          commit_author: "NexusHub-Bot[bot] <320790022+NexusHub-Bot[bot]@users.noreply.github.com>"
+          git add public/github-stats.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: update GitHub stats [skip ci]"
+          git push
