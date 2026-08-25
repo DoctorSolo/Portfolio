@@ -79,7 +79,7 @@ jobs:
             --arg private "$REPOS_PRIVATE" \
             --arg date "$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
             '{
-              contributions: ($totalContribs | tonumber),
+              commits: ($totalContribs | tonumber),
               repos: {
                 total: ($total | tonumber),
                 public: ($public | tonumber),
