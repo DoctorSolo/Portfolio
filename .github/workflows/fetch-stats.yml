@@ -45,7 +45,7 @@ jobs:
           C2025=$(echo "$RESPONSE" | jq -r '.data.user.c2025 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0')
           C2026=$(echo "$RESPONSE" | jq -r '.data.user.c2026 | (.totalCommitContributions + .totalIssueContributions + .totalPullRequestContributions + .totalPullRequestReviewContributions + .restrictedContributionsCount) // 0')
 
-          # Soma total matemática corrigida
+          # Soma total matemática
           COMMITS=$((C2023 + C2024 + C2025 + C2026))
 
           REPOS_TOTAL=$(echo "$RESPONSE" | jq -r '.data.user.repositories.totalCount // 0')
@@ -74,16 +74,16 @@ jobs:
         id: generate_token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ secrets.CLIENT_ID }}
+          app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
       - name: Commit and Push
         run: |
           git config user.name "NexusHub-Bot[bot]"
           git config user.email "${{ steps.generate_token.outputs.app-id }}+NexusHub-Bot[bot]@users.noreply.github.com"
-          echo "Update" > github-stats.json
+          
+          git remote set-url origin https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git
+          
           git add public/github-stats.json
           git diff --quiet && git diff --staged --quiet || git commit -m "chore: update GitHub stats [skip ci]"
           git push
-        env:
-          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
