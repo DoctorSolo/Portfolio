@@ -107,7 +107,7 @@ jobs:
       #     git push
 
       - name: Commit changes via GitHub App
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: update GitHub stats [skip ci]"
           file_pattern: "public/github-stats.json"
