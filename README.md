@@ -221,7 +221,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 📜 Creditos
 
-- <img height=30 align=center src="public/racoon.svg" /> Icon created by [juicy_fish](https://www.flaticon.com/br/autores/juicy-fish) available at [Flaticon](https://www.flaticon.com/br/icone-gratis/racoon_1797272?term=racoon&page=1&position=3&origin=search&related_id=1797272)
+- <img height=30 src="public/racoon.svg" /> Icon created by [juicy_fish](https://www.flaticon.com/br/autores/juicy-fish) available at [Flaticon](https://www.flaticon.com/br/icone-gratis/racoon_1797272?term=racoon&page=1&position=3&origin=search&related_id=1797272)
 
 ---
 
