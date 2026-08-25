@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Code Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Fetch and Process GitHub Stats
         env:
@@ -90,7 +90,7 @@ jobs:
 
       - name: Generate App Token
         id: generate_token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
@@ -98,7 +98,7 @@ jobs:
       - name: Commit and Push
         run: |
           git config user.name "NexusHub-Bot[bot]"
-          git config user.email "${{ secrets.APP_ID }}+NexusHub-Bot[bot]@users.noreply.github.com"
+          git config user.email "320790022+NexusHub-Bot[bot]@users.noreply.github.com"
           
           git remote set-url origin https://x-access-token:${{ steps.generate_token.outputs.token }}@github.com/${{ github.repository }}.git
           
