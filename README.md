@@ -239,19 +239,19 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
     <td>
         <div align="center"> 
           <a href="https://github.com/DoctorSolo">
-            <img width="100" src="https://img.shields.io/badge/-GitHub-000?style=for-the-badge&logo=GitHub&logoColor=white"/>
+            <img width="120" src="https://img.shields.io/badge/-GitHub-000?style=for-the-badge&logo=GitHub&logoColor=white"/>
           </a>
           <a href="https://bsky.app/profile/doctorsolo.bsky.social">
-            <img width="100" src="https://img.shields.io/badge/-Bluesky-000?style=for-the-badge&logo=BlueSky&logoColor=blue"/>
+            <img width="130" src="https://img.shields.io/badge/-Bluesky-000?style=for-the-badge&logo=BlueSky&logoColor=blue"/>
           </a>
           <a href="https://www.linkedin.com/in/migueledu303/">
-            <img width="100" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
+            <img width="110" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
           </a>
           <a href="https://discord.com/users/534808726570270731/">
-            <img width="100" src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white"/>
+            <img width="130" src="https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white"/>
           </a>
           <a href="https://dr-solo.itch.io/">
-            <img width="100" src="https://img.shields.io/badge/-Itch.io-000?style=for-the-badge&logo=itch.io&logoColor=%23E4405F"/>
+            <img width="125" src="https://img.shields.io/badge/-Itch.io-000?style=for-the-badge&logo=itch.io&logoColor=%23E4405F"/>
           </a>
         </div>
     </td>
