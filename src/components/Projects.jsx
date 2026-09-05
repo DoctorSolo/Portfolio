@@ -40,12 +40,12 @@ function Projects() {
       featured: true,
     },
     {
-      title: "Localization Project",
+      title: "Geocode Aplication",
       description:
         "The localization project functions like a geographic search engine. The goal is for the user to search based on coordinates, with the system returning information about the location.",
-      tech: ["Python", "Tkinter"],
-      github: "https://github.com/DoctorSolo/localization-project",
-      demo: "https://github.com/DoctorSolo/localization-project",
+      tech: ["Python", "CustomTkinter", "Geopy", "Folium"],
+      github: "https://github.com/DoctorSolo/Geocode-Aplication",
+      demo: "https://github.com/DoctorSolo/Geocode-Aplication",
       featured: false,
     },
     {
