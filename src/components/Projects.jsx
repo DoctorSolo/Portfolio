@@ -49,6 +49,15 @@ function Projects() {
       featured: false,
     },
     {
+      title: "Digital Menu",
+      description:
+        "The digital menu is a project featuring AI capabilities. If you're interested, you can check it out.",
+      tech: ["Python", "CustomTkinter", "Ollama"],
+      github: "https://github.com/DoctorSolo/Digital-Menu-With-Python",
+      demo: "https://github.com/DoctorSolo/Digital-Menu-With-Python",
+      featured: false,
+    },
+    {
       title: "Mission Critical: Securing the Cargo",
       description:
         "Critical Mission was my first game, it's not much but it lives in my heart.",
