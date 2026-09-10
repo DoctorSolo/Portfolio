@@ -34,6 +34,7 @@ function Projects() {
         "Google Maps API",
         "Gemini API",
         "Ollama",
+        "Ollama API",
       ],
       github: "https://github.com/DoctorSolo/Geocode-Aplication-Google-Cloud",
       demo: "https://github.com/DoctorSolo/Geocode-Aplication-Google-Cloud",
@@ -52,7 +53,7 @@ function Projects() {
       title: "Digital Menu",
       description:
         "The digital menu is a project featuring AI capabilities. If you're interested, you can check it out.",
-      tech: ["Python", "CustomTkinter", "Ollama"],
+      tech: ["Python", "CustomTkinter", "Ollama", "Ollama API"],
       github: "https://github.com/DoctorSolo/Digital-Menu-With-Python",
       demo: "https://github.com/DoctorSolo/Digital-Menu-With-Python",
       featured: false,
